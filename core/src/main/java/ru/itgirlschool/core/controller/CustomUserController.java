@@ -39,14 +39,14 @@ public class CustomUserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCustomUserById(@PathVariable("id") Long id) {
         customUserService.deleteCustomUser(id);
         return ResponseEntity.ok()
                 .build();
     }
 
     @DeleteMapping("/batch")
-    public ResponseEntity<Void> deleteCustomUser(@RequestParam List<Long> ids) {
+    public ResponseEntity<Void> deleteCustomUsers(@RequestParam List<Long> ids) {
         customUserService.deleteCustomUsers(ids);
         return ResponseEntity.ok()
                 .build();
