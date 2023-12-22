@@ -9,35 +9,33 @@ import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class CustomUserController {
     private final CustomUserService customUserService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomUserResponseDTO> getCustomUserById(@PathVariable Long id) {
-        customUserService.getCustomUserById(id);
-        return ResponseEntity.ok()
-                .build();
+    public ResponseEntity<CustomUserResponseDTO> getCustomUserById(@PathVariable ("id") Long id) {
+        CustomUserResponseDto cu = customUserService.getCustomUserById(id);
+        return ResponseEntity.ok(cu);
     }
 
     @GetMapping
     public ResponseEntity<List<CustomUserResponseDTO>> getCustomUsers() {
-        List<CustomUserResponseDTO> customUsers = customUserService.getCustomUsers();
-        return ResponseEntity.ok(customUsers);
+        List<CustomUserResponseDTO> cUsers = customUserService.getCustomUsers();
+        return ResponseEntity.ok(cUsers);
     }
 
     @PostMapping
-    public ResponseEntity<CustomUserCreateDto> createCustomUser(@RequestBody CustomUserCreateDto customUserCreateDto) {
-        customUserService.createCustomUser(customUserCreateDto);
-        return ResponseEntity.ok()
-                .build();
+    public ResponseEntity<CustomUserResponseDTO> createCustomUser(@RequestBody CustomUserCreateDto customUserCreateDto) {
+        CustomUserResponseDTO createdCustomUser = customUserService.createCustomUser(customUserCreateDto);
+        return ResponseEntity.ok(createdCustomUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomUserUpdateDto> updateCustomUser(@PathVariable Long id, @RequestBody CustomUserUpdateDto customUserUpdateDto) {
-        customUserService.updateCustomUser(id, customUserUpdateDto);
-        return ResponseEntity.ok()
-                .build();
+    public ResponseEntity<CustomUserResponseDTO> updateCustomUser(@PathVariable("id") Long id, @RequestBody CustomUserUpdateDto customUserUpdateDto) {
+        CustomUserResponseDTO updatedCustomUser = customUserService.updateCustomUser(id, customUserUpdateDto);
+        return ResponseEntity.ok(updatedCustomUser);
     }
 
     @DeleteMapping("/{id}")
