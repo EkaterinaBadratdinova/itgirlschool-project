@@ -1,8 +1,11 @@
 package ru.itgirlschool.core.service;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
-import ru.itgirlschool.core.dto.CustomUserRequestDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 import ru.itgirlschool.core.dto.mapper.CustomUserMapper;
@@ -24,7 +27,7 @@ public class CustomUserServiceImpl implements CustomUserService {
     }
 
     @Override
-    public CustomUserResponseDto getCustomUserById(Long id) {
+    public CustomUserResponseDto getCustomUserById(@PathVariable("id") Long id) {
         CustomUser customUser = customUserRepository.findById(id).orElseThrow();
         return customUserMapper.mapToResponseUserDto(customUser);
     }
@@ -38,24 +41,14 @@ public class CustomUserServiceImpl implements CustomUserService {
     }
 
     @Override
-    public CustomUserResponseDto createCustomUser(CustomUserRequestDto customUserDto) {
-        return null;
-    }
-
-    @Override
-    public CustomUserResponseDto updateCustomUser(Long id, CustomUserRequestDto customUserDto) {
-        return null;
-    }
-
-    @Override
-    public CustomUserResponseDto createCustomUser(CustomUserCreateDto customUserCreateDto) {
+    public CustomUserResponseDto createCustomUser(@RequestBody @Valid CustomUserCreateDto customUserCreateDto) {
         CustomUser customUser = customUserMapper.mapFromUserCreateDto(customUserCreateDto);
         CustomUser savedUser = customUserRepository.save(customUser);
         return customUserMapper.mapToResponseUserDto(savedUser);
     }
 
     @Override
-    public CustomUserResponseDto updateCustomUser(Long id, CustomUserUpdateDto customUserUpdateDto) {
+    public CustomUserResponseDto updateCustomUser(@PathVariable("id") Long id, @RequestBody @Valid CustomUserUpdateDto customUserUpdateDto) {
         CustomUser customUser = customUserRepository.findById(id).orElseThrow();
         customUser.setFirstName(customUserUpdateDto.getFirstName());
         CustomUser.setLastName(customUserUpdateDto.getLastName());
@@ -70,13 +63,13 @@ public class CustomUserServiceImpl implements CustomUserService {
     }
 
     @Override
-    public void deleteCustomUser(Long id) {
+    public void deleteCustomUser(@PathVariable Long id) {
         CustomUser customUser = customUserRepository.findById(id).orElseThrow();
         customUserRepository.delete(customUser);
     }
 
     @Override
-    public void deleteCustomUsers(List<Long> ids) {
+    public void deleteCustomUsers(@RequestParam List<Long> ids) {
         List<CustomUser> customUsers = customUserRepository.findAllById(ids);
         customUserRepository.deleteAll(customUsers);
     }

@@ -9,17 +9,7 @@ import java.util.List;
 
 public interface CustomUserService {
 
-    CustomUserResponseDto getUserById(Long id);
-
     List<CustomUserResponseDto> getAllUsers();
-
-    CustomUserResponseDto createUser(CustomUserRequestDto customUserDto);
-
-    CustomUserResponseDto updateUser(Long id, CustomUserRequestDto customUserDto);
-
-    void deleteUser(Long id);
-
-    void deleteUsers(List<Long> ids);
 
     CustomUserResponseDto getCustomUserById(Long id);
 
