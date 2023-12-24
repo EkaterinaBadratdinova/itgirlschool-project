@@ -1,7 +1,6 @@
 package ru.itgirlschool.core.service;
 
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
-import ru.itgirlschool.core.dto.CustomUserRequestDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 
@@ -14,10 +13,6 @@ public interface CustomUserService {
     CustomUserResponseDto getCustomUserById(Long id);
 
     List<CustomUserResponseDto> getCustomUsers();
-
-    CustomUserResponseDto createCustomUser(CustomUserRequestDto customUserDto);
-
-    CustomUserResponseDto updateCustomUser(Long id, CustomUserRequestDto customUserDto);
 
     CustomUserResponseDto createCustomUser(CustomUserCreateDto customUserCreateDto);
 
