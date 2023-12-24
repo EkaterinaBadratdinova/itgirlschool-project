@@ -28,4 +28,5 @@ public class CustomUserResponseDto {
     private String login;
 
     private String password;
+
 }
