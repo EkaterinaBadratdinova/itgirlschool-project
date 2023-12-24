@@ -8,15 +8,13 @@ import java.util.List;
 
 public interface CustomUserService {
 
-    List<CustomUserResponseDto> getAllUsers();
-
     CustomUserResponseDto getCustomUserById(Long id);
 
     List<CustomUserResponseDto> getCustomUsers();
 
-    CustomUserResponseDto createCustomUser(CustomUserCreateDto customUserCreateDto);
+    CustomUserResponseDto createCustomUser(CustomUserCreateDto customUserCreateDto) throws Exception;
 
-    CustomUserResponseDto updateCustomUser(Long id, CustomUserUpdateDto customUserUpdateDto);
+    CustomUserResponseDto updateCustomUser(Long id, CustomUserUpdateDto customUserUpdateDto) throws Exception;
 
     void deleteCustomUser(Long id);
 
