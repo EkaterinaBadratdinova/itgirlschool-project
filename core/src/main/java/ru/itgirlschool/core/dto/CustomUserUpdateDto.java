@@ -45,4 +45,6 @@ public class CustomUserUpdateDto {
     @Size(min = 8)
     @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$")
     private String password;
+
+    private Boolean isChangePassword;
 }
