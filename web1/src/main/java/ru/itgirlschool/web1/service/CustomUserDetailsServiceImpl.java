@@ -5,8 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.itgirlschool.web1.dto.Web1CustomUserUpdateDto;
 import ru.itgirlschool.web1.entity.CustomUser;
 import ru.itgirlschool.web1.feign.CustomUserCoreFeignClient;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,11 +20,11 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     //реализовать DTO
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<CustomUserResponseDto> customUserResponseDtoOptional = customUserCoreFeignClient.getUserByLogin(login);
+        Optional<Web1CustomUserUpdateDto> customUserResponseDtoOptional = customUserCoreFeignClient.getUserByLogin(login);
         if (customUserResponseDtoOptional.isEmpty()) {
             throw new UsernameNotFoundException("User Not Found with login: " + login);
         } else {
-            CustomUserResponseDto customUserResponseDto = customUserResponseDtoOptional.get();
+            Web1CustomUserUpdateDto customUserResponseDto = customUserResponseDtoOptional.get();
             CustomUser customUser = mapToCustomUser(customUserResponseDto);
             return CustomUserDetailsImpl.build(customUser);
         }

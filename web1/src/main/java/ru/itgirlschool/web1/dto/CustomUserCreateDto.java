@@ -1,13 +1,9 @@
-package ru.itgirlschool.core.dto;
+package ru.itgirlschool.web1.dto;
 
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 
 @AllArgsConstructor
