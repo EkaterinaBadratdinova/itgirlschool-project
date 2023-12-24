@@ -13,6 +13,7 @@ import ru.itgirlschool.core.entity.CustomUser;
 import ru.itgirlschool.core.repository.CustomUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +43,19 @@ public class CustomUserServiceImpl implements CustomUserService {
 
     @Override
     public CustomUserResponseDto createCustomUser(@RequestBody @Valid CustomUserCreateDto customUserCreateDto) {
+        Optional<CustomUser> existingUserByEmail = customUserRepository.findByEmail(customUserCreateDto.getEmail());
+        if (existingUserByEmail.isPresent()) {
+            return new CustomUserResponseDto();
+        }
+        Optional<CustomUser> existingUserByPhone = customUserRepository.findByPhone(customUserCreateDto.getPhone());
+        if (existingUserByPhone.isPresent()) {
+            return new CustomUserResponseDto();
+        }
+        Optional<CustomUser> existingUserByLogin = customUserRepository.findByLogin(customUserCreateDto.getLogin());
+        if (existingUserByLogin.isPresent()) {
+            return new CustomUserResponseDto();
+        }
+
         CustomUser customUser = customUserMapper.mapFromUserCreateDto(customUserCreateDto);
         CustomUser savedUser = customUserRepository.save(customUser);
         return customUserMapper.mapToResponseUserDto(savedUser);
