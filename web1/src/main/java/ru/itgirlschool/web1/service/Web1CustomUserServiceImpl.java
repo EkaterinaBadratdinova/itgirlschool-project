@@ -35,7 +35,7 @@ public class Web1CustomUserServiceImpl implements Web1CustomUserService {
     public Web1CustomUserResponseDto createCustomUser(Web1CustomUserCreateDto web1CustomUserCreateDto) {
         //замаппить Web1CustomUserCreateDto в CustomUserCreateDto
         //создать дто и метод в маппере
-        CustomUserCreateDto request = customUserMapper.mapToCoreCustomUserCreateDto(web1CustomUserCreateDto);
+        CustomUserCreateDto request = customUserMapper.mapToCustomUserCreateDto(web1CustomUserCreateDto);
         CustomUserResponseDto response = customUserCoreFeignClient.createCustomUser(request);
         return customUserMapper.mapToWeb1CustomUserResponseDto(response);
     }
@@ -44,7 +44,7 @@ public class Web1CustomUserServiceImpl implements Web1CustomUserService {
     public Web1CustomUserResponseDto updateCustomUser(Long id, Web1CustomUserUpdateDto web1CustomUserUpdateDto) {
         //замаппить Web1CustomUserUpdateDto в CustomUserUpdateDto
         //создать дто и метод в маппере
-        CustomUserUpdateDto request = customUserMapper.mapToCoreCustomUserUpdateDto(web1CustomUserUpdateDto);
+        CustomUserUpdateDto request = customUserMapper.mapToCustomUserUpdateDto(web1CustomUserUpdateDto);
         CustomUserResponseDto response = customUserCoreFeignClient.updateCustomUser(id, request);
         return customUserMapper.mapToWeb1CustomUserResponseDto(response);
     }
