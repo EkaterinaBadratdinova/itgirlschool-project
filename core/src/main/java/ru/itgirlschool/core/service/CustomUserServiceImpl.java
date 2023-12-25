@@ -55,7 +55,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         }
         CustomUser customUser = customUserMapper.mapFromUserCreateDto(customUserCreateDto);
         customUser.setPassword(encoder.encode(customUserCreateDto.getPassword()));
-        Optional<Role> roleOptional = roleRepository.findByRoleType(RoleType.ROLE_USER);
+        Optional<Role> roleOptional = roleRepository.findByRole(RoleType.ROLE_USER);
         if (roleOptional.isPresent()) {
             Role role = roleOptional.get();
             customUser.setRoles(Collections.singleton(role));

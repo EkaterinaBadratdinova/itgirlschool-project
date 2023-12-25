@@ -9,7 +9,7 @@ import ru.itgirlschool.web1.dto.CustomUserUpdateDto;
 
 import java.util.List;
 
-@FeignClient(name = "core", url = "${core.url}")
+@FeignClient(name = "coreFeignClient", url = "http://localhost:8080")
 public interface CustomUserCoreFeignClient {
 
     @GetMapping(value = "/api/users/{id}")
@@ -26,10 +26,10 @@ public interface CustomUserCoreFeignClient {
                                            @RequestBody CustomUserUpdateDto customUserUpdateDto);
 
     @DeleteMapping(value = "/api/users/{id}")
-    void deleteCustomUserById(@PathVariable Long id);
+    void deleteCustomUserById(@PathVariable ("id") Long id);
 
     @DeleteMapping(value = "/api/users/batch")
-    void deleteCustomUsers(@RequestParam List<Long> ids);
+    void deleteCustomUsers(@RequestParam("batch") List<Long> ids);
 
     @GetMapping(value = "/api/users/user")
     CustomUserDto getCustomUserByLogin(@RequestParam("login") String login);
