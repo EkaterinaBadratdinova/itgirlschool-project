@@ -2,6 +2,7 @@ package ru.itgirlschool.web1.dto.mapper;
 
 import org.mapstruct.Mapper;
 import ru.itgirlschool.web1.dto.*;
+import ru.itgirlschool.web1.entity.CustomUser;
 
 @Mapper(componentModel = "spring")
 public interface Web1CustomUserMapper {
@@ -11,4 +12,6 @@ public interface Web1CustomUserMapper {
     CustomUserCreateDto mapFromWeb1CustomUserCreateDto(Web1CustomUserCreateDto web1CustomUserCreateDto);
 
     CustomUserUpdateDto mapFromWeb1CustomUserUpdateDto(Web1CustomUserUpdateDto web1CustomUserUpdateDto);
+
+    CustomUser mapFromCustomUserDto(CustomUserDto customUserDto);
 }
