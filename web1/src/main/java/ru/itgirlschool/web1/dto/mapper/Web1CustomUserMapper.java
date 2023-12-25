@@ -4,11 +4,11 @@ import org.mapstruct.Mapper;
 import ru.itgirlschool.web1.dto.*;
 
 @Mapper(componentModel = "spring")
-public abstract class Web1CustomUserMapper {
-    public abstract Web1CustomUserResponseDto mapFrom(CustomUserResponseDto customUserResponseDto);
+public interface Web1CustomUserMapper {
 
-    public abstract CustomUserCreateDto mapFrom(Web1CustomUserCreateDto web1CustomUserCreateDto);
+    Web1CustomUserResponseDto mapFromCustomUserResponseDto(CustomUserResponseDto customUserResponseDto);
 
-    public abstract CustomUserUpdateDto mapFrom(Web1CustomUserUpdateDto web1CustomUserUpdateDto);
+    CustomUserCreateDto mapFromWeb1CustomUserCreateDto(Web1CustomUserCreateDto web1CustomUserCreateDto);
 
+    CustomUserUpdateDto mapFromWeb1CustomUserUpdateDto(Web1CustomUserUpdateDto web1CustomUserUpdateDto);
 }
