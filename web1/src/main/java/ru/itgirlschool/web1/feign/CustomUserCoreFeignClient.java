@@ -2,6 +2,9 @@ package ru.itgirlschool.web1.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import ru.itgirlschool.web1.dto.CustomUserCreateDto;
+import ru.itgirlschool.web1.dto.CustomUserResponseDto;
+import ru.itgirlschool.web1.dto.CustomUserUpdateDto;
 
 import java.util.List;
 
