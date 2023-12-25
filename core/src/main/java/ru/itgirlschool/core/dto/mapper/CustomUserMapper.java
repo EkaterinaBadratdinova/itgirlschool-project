@@ -3,7 +3,6 @@ package ru.itgirlschool.core.dto.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
-import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 import ru.itgirlschool.core.entity.CustomUser;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
 
