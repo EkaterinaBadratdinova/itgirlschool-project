@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
+import ru.itgirlschool.core.dto.CustomUserDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 import ru.itgirlschool.core.service.CustomUserService;
@@ -52,6 +53,12 @@ public class CustomUserController {
         customUserService.deleteCustomUsers(ids);
         return ResponseEntity.ok()
                 .build();
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<CustomUserDto> getCustomUserByLogin(@RequestParam("login") String login) {
+        CustomUserDto response = customUserService.getByLogin(login);
+        return ResponseEntity.ok(response);
     }
 }
 

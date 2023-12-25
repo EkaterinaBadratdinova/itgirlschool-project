@@ -1,6 +1,7 @@
 package ru.itgirlschool.core.service;
 
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
+import ru.itgirlschool.core.dto.CustomUserDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 
@@ -19,4 +20,6 @@ public interface CustomUserService {
     void deleteCustomUser(Long id);
 
     void deleteCustomUsers(List<Long> ids);
+
+    CustomUserDto getByLogin(String login);
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
+import ru.itgirlschool.core.dto.CustomUserDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
 import ru.itgirlschool.core.dto.mapper.CustomUserMapper;
@@ -46,7 +47,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         if (customUserRepository.existsByEmail(customUserCreateDto.getEmail())) {
             throw new Exception("User with such email already exists. Enter another email.");
         }
-        if (customUserRepository.existByPhone(customUserCreateDto.getPhone())) {
+        if (customUserRepository.existsByPhone(customUserCreateDto.getPhone())) {
             throw new Exception("User with such phone already exists. Enter another phone.");
         }
         if (customUserRepository.existsByLogin(customUserCreateDto.getLogin())) {
@@ -84,7 +85,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         if (customUser.getPhone().equals(customUserUpdateDto.getPhone())) {
             customUser.setPhone(customUser.getPhone());
         } else {
-            if (customUserRepository.existByPhone(customUserUpdateDto.getPhone())) {
+            if (customUserRepository.existsByPhone(customUserUpdateDto.getPhone())) {
                 throw new Exception("User with such phone already exists. Enter another phone.");
             } else {
                 customUser.setPhone(customUser.getPhone());
@@ -116,5 +117,11 @@ public class CustomUserServiceImpl implements CustomUserService {
     public void deleteCustomUsers(List<Long> ids) {
         List<CustomUser> customUsers = customUserRepository.findAllById(ids);
         customUserRepository.deleteAll(customUsers);
+    }
+
+    @Override
+    public CustomUserDto getByLogin(String login) {
+        CustomUser customUser = customUserRepository.findByLogin(login).orElseThrow();
+        return customUserMapper.mapToUserDto(customUser);
     }
 }

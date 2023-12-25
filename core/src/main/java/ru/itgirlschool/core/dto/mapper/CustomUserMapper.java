@@ -2,6 +2,7 @@ package ru.itgirlschool.core.dto.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import ru.itgirlschool.core.dto.CustomUserDto;
 import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.entity.CustomUser;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
@@ -17,4 +18,6 @@ public interface CustomUserMapper {
     @Mapping(target = "", source = "password", ignore = true)
     @Mapping(target = "", source = "roles", ignore = true)
     CustomUserResponseDto mapToResponseUserDto (CustomUser customUser);
+
+    CustomUserDto mapToUserDto (CustomUser customUser);
 }
