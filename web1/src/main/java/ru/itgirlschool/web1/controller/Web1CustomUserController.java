@@ -4,6 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.itgirlschool.web1.dto.Web1CustomUserCreateDto;
+import ru.itgirlschool.web1.dto.Web1CustomUserResponseDto;
+import ru.itgirlschool.web1.dto.Web1CustomUserUpdateDto;
 import ru.itgirlschool.web1.service.Web1CustomUserService;
 
 import java.util.List;
@@ -43,12 +46,12 @@ public class Web1CustomUserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomUserById(@PathVariable Long id) {
         web1CustomUserService.deleteCustomUserById(id);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/batch")
     public ResponseEntity<Void> deleteCustomUsers(@RequestParam List<Long> ids) {
         web1CustomUserService.deleteCustomUsers(ids);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 }
