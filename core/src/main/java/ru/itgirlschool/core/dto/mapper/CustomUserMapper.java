@@ -9,20 +9,13 @@ import ru.itgirlschool.core.dto.CustomUserCreateDto;
 
 @Mapper(componentModel = "spring")
 public interface CustomUserMapper {
+
+    @Mapping(target = "password", ignore = true)
     @Mapping(target = "userRoles", ignore = true)
     CustomUser mapFromUserCreateDto (CustomUserCreateDto customUserCreateDto);
 
-    @Mapping(target = "userRoles", ignore = true)
-    CustomUser mapFromUserUpdateDto(CustomUserUpdateDto customUserUpdateDto);
-
-    @Mapping(target = "userRoles", ignore = true)
-    CustomUserCreateDto mapToCreateUserDto (CustomUser customUser);
-
-    @Mapping(target = "userRoles", ignore = true)
-    CustomUserUpdateDto mapToUpdateUserDto (CustomUser customUser);
-
-    @Mapping(target = "", source = "roles", ignore = true)
     @Mapping(target = "", source = "id", ignore = true)
     @Mapping(target = "", source = "password", ignore = true)
+    @Mapping(target = "", source = "roles", ignore = true)
     CustomUserResponseDto mapToResponseUserDto (CustomUser customUser);
 }

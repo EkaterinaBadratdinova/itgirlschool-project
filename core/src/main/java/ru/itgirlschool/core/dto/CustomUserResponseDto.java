@@ -12,21 +12,11 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class CustomUserResponseDto {
-
     private String firstName;
-
     private String lastName;
-
     private LocalDate birthday;
-
     private int age;
-
     private String email;
-
     private String phone;
-
     private String login;
-
-    private String password;
-
 }
