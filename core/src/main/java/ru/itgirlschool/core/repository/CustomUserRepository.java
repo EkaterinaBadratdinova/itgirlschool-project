@@ -19,5 +19,5 @@ public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
 
     Boolean existsByEmail(String email);
 
-    Boolean existByPhone(String phone);
+    Boolean existsByPhone(String phone);
 }
