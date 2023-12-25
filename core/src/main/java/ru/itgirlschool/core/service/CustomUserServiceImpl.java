@@ -43,16 +43,13 @@ public class CustomUserServiceImpl implements CustomUserService {
 
     @Override
     public CustomUserResponseDto createCustomUser(CustomUserCreateDto customUserCreateDto) throws Exception {
-        Optional<CustomUser> existingUserByEmail = customUserRepository.findByEmail(customUserCreateDto.getEmail());
-        if (existingUserByEmail.isPresent()) {
+        if (customUserRepository.existsByEmail(customUserCreateDto.getEmail())) {
             throw new Exception("User with such email already exists. Enter another email.");
         }
-        Optional<CustomUser> existingUserByPhone = customUserRepository.findByPhone(customUserCreateDto.getPhone());
-        if (existingUserByPhone.isPresent()) {
+        if (customUserRepository.existByPhone(customUserCreateDto.getPhone())) {
             throw new Exception("User with such phone already exists. Enter another phone.");
         }
-        Optional<CustomUser> existingUserByLogin = customUserRepository.findByLogin(customUserCreateDto.getLogin());
-        if (existingUserByLogin.isPresent()) {
+        if (customUserRepository.existsByLogin(customUserCreateDto.getLogin())) {
             throw new Exception("User with such login already exists. Enter another login.");
         }
         CustomUser customUser = customUserMapper.mapFromUserCreateDto(customUserCreateDto);
@@ -78,8 +75,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         if (customUser.getEmail().equals(customUserUpdateDto.getEmail())) {
             customUser.setEmail(customUser.getEmail());
         } else {
-            Optional<CustomUser> existingUserByEmail = customUserRepository.findByEmail(customUserUpdateDto.getEmail());
-            if (existingUserByEmail.isPresent()) {
+            if (customUserRepository.existsByEmail(customUserUpdateDto.getEmail())) {
                 throw new Exception("User with such email already exists. Enter another email.");
             } else {
                 customUser.setEmail(customUser.getEmail());
@@ -88,8 +84,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         if (customUser.getPhone().equals(customUserUpdateDto.getPhone())) {
             customUser.setPhone(customUser.getPhone());
         } else {
-            Optional<CustomUser> existingUserByPhone = customUserRepository.findByPhone(customUserUpdateDto.getPhone());
-            if (existingUserByPhone.isPresent()) {
+            if (customUserRepository.existByPhone(customUserUpdateDto.getPhone())) {
                 throw new Exception("User with such phone already exists. Enter another phone.");
             } else {
                 customUser.setPhone(customUser.getPhone());
@@ -98,8 +93,7 @@ public class CustomUserServiceImpl implements CustomUserService {
         if (customUser.getLogin().equals(customUserUpdateDto.getLogin())) {
             customUser.setLogin(customUser.getLogin());
         } else {
-            Optional<CustomUser> existingUserByLogin = customUserRepository.findByLogin(customUserUpdateDto.getLogin());
-            if (existingUserByLogin.isPresent()) {
+            if (customUserRepository.existsByLogin(customUserUpdateDto.getLogin())) {
                 throw new Exception("User with such login already exists. Enter another login.");
             } else {
                 customUser.setLogin(customUser.getLogin());

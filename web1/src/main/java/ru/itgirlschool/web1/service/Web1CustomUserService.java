@@ -1,5 +1,9 @@
 package ru.itgirlschool.web1.service;
 
+import ru.itgirlschool.web1.dto.Web1CustomUserCreateDto;
+import ru.itgirlschool.web1.dto.Web1CustomUserResponseDto;
+import ru.itgirlschool.web1.dto.Web1CustomUserUpdateDto;
+
 import java.util.List;
 
 public interface Web1CustomUserService {

@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itgirlschool.core.dto.CustomUserCreateDto;
+import ru.itgirlschool.core.dto.CustomUserResponseDto;
 import ru.itgirlschool.core.dto.CustomUserUpdateDto;
+import ru.itgirlschool.core.service.CustomUserService;
 
 import java.util.List;
 
@@ -15,26 +17,26 @@ public class CustomUserController {
     private final CustomUserService customUserService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomUserResponseDTO> getCustomUserById(@PathVariable ("id") Long id) {
-        CustomUserResponseDto cu = customUserService.getCustomUserById(id);
-        return ResponseEntity.ok(cu);
+    public ResponseEntity<CustomUserResponseDto> getCustomUserById(@PathVariable ("id") Long id) {
+        CustomUserResponseDto response = customUserService.getCustomUserById(id);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomUserResponseDTO>> getCustomUsers() {
-        List<CustomUserResponseDTO> cUsers = customUserService.getCustomUsers();
-        return ResponseEntity.ok(cUsers);
+    public ResponseEntity<List<CustomUserResponseDto>> getCustomUsers() {
+        List<CustomUserResponseDto> responseList = customUserService.getCustomUsers();
+        return ResponseEntity.ok(responseList);
     }
 
     @PostMapping
-    public ResponseEntity<CustomUserResponseDTO> createCustomUser(@RequestBody CustomUserCreateDto customUserCreateDto) {
-        CustomUserResponseDTO createdCustomUser = customUserService.createCustomUser(customUserCreateDto);
+    public ResponseEntity<CustomUserResponseDto> createCustomUser(@RequestBody CustomUserCreateDto customUserCreateDto) throws Exception {
+        CustomUserResponseDto createdCustomUser = customUserService.createCustomUser(customUserCreateDto);
         return ResponseEntity.ok(createdCustomUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomUserResponseDTO> updateCustomUser(@PathVariable("id") Long id, @RequestBody CustomUserUpdateDto customUserUpdateDto) {
-        CustomUserResponseDTO updatedCustomUser = customUserService.updateCustomUser(id, customUserUpdateDto);
+    public ResponseEntity<CustomUserResponseDto> updateCustomUser(@PathVariable("id") Long id, @RequestBody CustomUserUpdateDto customUserUpdateDto) throws Exception {
+        CustomUserResponseDto updatedCustomUser = customUserService.updateCustomUser(id, customUserUpdateDto);
         return ResponseEntity.ok(updatedCustomUser);
     }
 

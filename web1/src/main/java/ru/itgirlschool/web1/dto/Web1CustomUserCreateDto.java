@@ -1,5 +1,6 @@
 package ru.itgirlschool.web1.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -14,12 +15,12 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class Web1CustomUserCreateDto {
-    @Size(min = 2, max = 20)
-    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]", message = "Name required")
+    @Size(min = 2, max = 20, message = "First name length must be between 2 and 20 characters")
+    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]")
     private String firstName;
 
-    @Size(min = 2, max = 30)
-    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]", message = "Last name required")
+    @Size(min = 2, max = 30, message = "Last name length must be between 2 and 30 characters")
+    @Pattern(regexp = "^[а-яА-ЯёЁa-zA-Z]")
     private String lastName;
 
     @Past
@@ -30,17 +31,18 @@ public class Web1CustomUserCreateDto {
     private int age;
 
     @Size(min = 6, max = 50)
-    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{6,}", message = "Invalid email address")
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{6,}", message = "Incorrect format of email address")
     private String email;
 
     @Size(min = 12, max = 20)
-    @Pattern(regexp = "^((\\+7|7|8)+([0-9]){10})$", message = "Invalid phone number")
+    @Pattern(regexp = "^((\\+7|7|8)+([0-9]){10})$", message = "Incorrect format of phone number")
     private String phone;
 
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9-_]{4,20}$")
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9-_]{4,20}$", message = "Login length must be between 4 and 20 characters")
     private String login;
 
-    @Size(min = 8)
+    @Size(min = 8, message = "Password length must contain at least 8 characters")
     @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$")
     private String password;
 }

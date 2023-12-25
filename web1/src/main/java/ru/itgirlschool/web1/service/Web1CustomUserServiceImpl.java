@@ -3,6 +3,8 @@ package ru.itgirlschool.web1.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import ru.itgirlschool.web1.dto.*;
+import ru.itgirlschool.web1.dto.mapper.Web1CustomUserMapper;
 import ru.itgirlschool.web1.feign.CustomUserCoreFeignClient;
 
 import java.util.List;
@@ -13,40 +15,34 @@ import java.util.stream.Collectors;
 public class Web1CustomUserServiceImpl implements Web1CustomUserService {
 
     private final CustomUserCoreFeignClient customUserCoreFeignClient;
-    private final CustomUserMapper customUserMapper;
+    private final Web1CustomUserMapper web1CustomUserMapper;
 
     @Override
     public Web1CustomUserResponseDto getCustomUserById(Long id) {
         CustomUserResponseDto response = customUserCoreFeignClient.getCustomUserById(id);
-        //замаппить CustomUserResponseDto в Web1CustomUserResponseDto
-        //создать дто и метод в маппере
-        return customUserMapper.mapToWeb1CustomUserResponseDto(response);
+        return web1CustomUserMapper.mapFromCustomUserResponseDto(response);
     }
 
     @Override
     public List<Web1CustomUserResponseDto> getCustomUsers() {
         List<CustomUserResponseDto> customUsers = customUserCoreFeignClient.getCustomUsers();
         return customUsers.stream()
-                .map(customUser -> customUserMapper.mapToWeb1CustomUserResponseDto(customUser))
+                .map(customUser -> web1CustomUserMapper.mapFromCustomUserResponseDto(customUser))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Web1CustomUserResponseDto createCustomUser(Web1CustomUserCreateDto web1CustomUserCreateDto) {
-        //замаппить Web1CustomUserCreateDto в CustomUserCreateDto
-        //создать дто и метод в маппере
-        CustomUserCreateDto request = customUserMapper.mapToCustomUserCreateDto(web1CustomUserCreateDto);
+        CustomUserCreateDto request = web1CustomUserMapper.mapFromWeb1CustomUserCreateDto(web1CustomUserCreateDto);
         CustomUserResponseDto response = customUserCoreFeignClient.createCustomUser(request);
-        return customUserMapper.mapToWeb1CustomUserResponseDto(response);
+        return web1CustomUserMapper.mapFromCustomUserResponseDto(response);
     }
 
     @Override
     public Web1CustomUserResponseDto updateCustomUser(Long id, Web1CustomUserUpdateDto web1CustomUserUpdateDto) {
-        //замаппить Web1CustomUserUpdateDto в CustomUserUpdateDto
-        //создать дто и метод в маппере
-        CustomUserUpdateDto request = customUserMapper.mapToCustomUserUpdateDto(web1CustomUserUpdateDto);
+        CustomUserUpdateDto request = web1CustomUserMapper.mapFromWeb1CustomUserUpdateDto(web1CustomUserUpdateDto);
         CustomUserResponseDto response = customUserCoreFeignClient.updateCustomUser(id, request);
-        return customUserMapper.mapToWeb1CustomUserResponseDto(response);
+        return web1CustomUserMapper.mapFromCustomUserResponseDto(response);
     }
 
     @Override

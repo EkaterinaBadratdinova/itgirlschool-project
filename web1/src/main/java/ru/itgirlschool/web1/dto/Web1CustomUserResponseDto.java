@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -12,5 +14,9 @@ import lombok.NoArgsConstructor;
 public class Web1CustomUserResponseDto {
     private String firstName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthday;
+    private int age;
+    private String email;
+    private String phone;
+    private String login;
 }

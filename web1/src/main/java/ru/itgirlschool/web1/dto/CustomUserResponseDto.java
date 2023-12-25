@@ -1,21 +1,24 @@
 package ru.itgirlschool.web1.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 public class CustomUserResponseDto {
-
-    @NotBlank(message = "First name is required")
     private String firstName;
-
-    @NotBlank(message = "Last name is required")
     private String lastName;
-
-    @NotNull(message = "Age is required")
-    @Min(value = 18, message = "Age must be at least 18")
-    private Integer age;
-
+    private LocalDate birthday;
+    private int age;
+    private String email;
+    private String phone;
+    private String login;
 }
 
 
