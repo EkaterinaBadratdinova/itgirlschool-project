@@ -2,7 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-application-secret.properties
+web1/src/main/resources/application-secrets.properties
 
 ### IntelliJ IDEA ###
 /.idea
