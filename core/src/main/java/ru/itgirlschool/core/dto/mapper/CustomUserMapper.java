@@ -11,12 +11,12 @@ import ru.itgirlschool.core.dto.CustomUserCreateDto;
 public interface CustomUserMapper {
 
     @Mapping(target = "password", ignore = true)
-    @Mapping(target = "userRoles", ignore = true)
+   // @Mapping(target = "userRoles", ignore = true)
     CustomUser mapFromUserCreateDto (CustomUserCreateDto customUserCreateDto);
 
-    @Mapping(target = "", source = "id", ignore = true)
-    @Mapping(target = "", source = "password", ignore = true)
-    @Mapping(target = "", source = "roles", ignore = true)
+    //@Mapping(target = "id", source = "id", ignore = true)
+    //@Mapping(target = "password", source = "password", ignore = true)
+   //@Mapping(target = "", source = "roles", ignore = true)
     CustomUserResponseDto mapToResponseUserDto (CustomUser customUser);
 
     CustomUserDto mapToUserDto (CustomUser customUser);
