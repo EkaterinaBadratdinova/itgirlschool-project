@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.itgirlschool.web1.security.jwt.AuthEntryPointJwt;
-import ru.itgirlschool.web1.security.jwt.AuthTokenFilter;
 import ru.itgirlschool.web1.service.CustomUserDetailsServiceImpl;
 
 @Configuration
@@ -29,8 +28,8 @@ public class SecurityConfig {
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() {
-        return new AuthTokenFilter();
+    public JWTFilter authenticationJwtTokenFilter() {
+        return new JWTFilter();
     }
 
     @Bean
